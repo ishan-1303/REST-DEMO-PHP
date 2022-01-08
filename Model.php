@@ -26,7 +26,7 @@ class Model {
                 $feedback[] = "Inserted into Database";
             }
         }
-        echo json_encode($feedback);
+        #echo json_encode($feedback);
         return json_encode($feedback);
     }
 
@@ -42,7 +42,7 @@ class Model {
                 $feedback[] = "Updated in Database";
             }
         }
-        echo json_encode($feedback);
+        #echo json_encode($feedback);
         return json_encode($feedback);
     }
 
@@ -54,7 +54,7 @@ class Model {
         } else {
             $feedback = "Deleted from Database";
         }
-        echo $feedback;
+        #echo $feedback;
         return $feedback;
     }
 }

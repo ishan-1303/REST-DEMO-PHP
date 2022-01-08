@@ -35,18 +35,21 @@ class REST_API {
         $input = json_decode(file_get_contents('php://input'), TRUE);
         $this->stud->add($input['id'],$input['first_name'],$input['last_name'],$input['age'],$input['gender']);
         $result = $this->stud->save($this->stud);
+        echo $result;
     }
 
     function put() {
         $input = json_decode(file_get_contents('php://input'), TRUE);
         $this->stud->add($input['id'],$input['first_name'],$input['last_name'],$input['age'],$input['gender']);
         $result = $this->stud->update($this->stud);
+        echo $result;
     }
 
     function delete() {
         $input = json_decode(file_get_contents('php://input'), TRUE);
         $pk = $input['id'];
-        $result = $this->stud->delete($pk,$this->stud->table_name());        
+        $result = $this->stud->delete($pk,$this->stud->table_name());   
+        echo $result;     
     }
 }
 
