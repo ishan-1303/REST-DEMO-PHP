@@ -18,25 +18,7 @@ class DBCon{
         return $result;
     }
 
-    function insert_data($class, $data) {
-        $query = "INSERT INTO " . $this->table_name();
-        $q1 = "(";
-        $q2 = "VALUES(";
-        while(list($name,$value) = each($array)) {
-            if(!is_null($value) and $value != "") {
-                $q1 .= "$name,";
-                $q2 .= "$value,";
-            }
-        }
-        $q1[strlen($q1)-1] = ')';
-        $q2[strlen($q2)-1] = ')';
-        $query .= $q1 . $q2;
-
-        $result = pg_query($this->dbconn,$query);
-        return $result;
-    }
-
-    function save_data($data, $table) {
+    function insert_data($data, $table) {
         $query = "INSERT INTO " . $table;
         $q1 = "(";
         $q2 = " VALUES(";
@@ -48,6 +30,21 @@ class DBCon{
         
         $q1[strlen($q1)-1] = ')';
         $q2[strlen($q2)-1] = ')';
+        $query .= $q1 . $q2;
+        $result = pg_query($this->dbconn,$query);
+        return $result;
+    }
+
+    function update_data($data, $table) {
+        $query = "UPDATE " . $table;
+        $q1 = " SET ";
+
+        foreach ($data as $key => $value) {
+           $q1 .= "$key='$value',";
+        }
+        
+        $q1[strlen($q1)-1] = ' ';
+        $q2 = "WHERE id=". $data['id'];
         $query .= $q1 . $q2;
         $result = pg_query($this->dbconn,$query);
         return $result;
